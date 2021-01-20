@@ -1,0 +1,12 @@
+name: TimeIsPower
+main: xyz.vanillamc.TimeIsPower
+version: 1.0
+api-version: 1.16
+authors: [TurboSosiska]
+description: A plugin made with love specially for VanillaMC
+softdepend: [Essentials]
+website: play.vanilla-mc.xyz
+commands:
+   help:
+      usage: /timeispower
+      aliases: [tip, ti]

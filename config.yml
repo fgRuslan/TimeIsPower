@@ -1,0 +1,8 @@
+# TimeIsPower config file
+
+# The level that a new player should start with
+StartLevel: 0
+
+# The interval in minutes after which a player's level is increased
+# 600 minutes = 10 hours
+LevelInterval: 600
