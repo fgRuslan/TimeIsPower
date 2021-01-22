@@ -7,6 +7,8 @@ description: A plugin made with love specially for VanillaMC
 softdepend: [Essentials]
 website: play.vanilla-mc.xyz
 commands:
-   help:
+   timeispower:
       usage: /timeispower
       aliases: [tip, ti]
+   addlevel:
+      usage: /addlevel

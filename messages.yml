@@ -1,0 +1,7 @@
+commands:
+    timeispower: Display this message
+    add-time: Add custom time for a player
+
+messages:
+    overwrite: You have just overwritten a command for level %level%.
+    add-new: You have just successfully added level number %level%!

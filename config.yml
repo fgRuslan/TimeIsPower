@@ -6,3 +6,8 @@ StartLevel: 0
 # The interval in minutes after which a player's level is increased
 # 600 minutes = 10 hours
 LevelInterval: 600
+
+levels:
+    1: pex user %player% group add helper
+    2: pex user %player% group add helper2
+    3: pex user %player% group add helper3
