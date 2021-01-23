@@ -3,11 +3,27 @@
 # The level that a new player should start with
 StartLevel: 0
 
+# Fixed interval means that you will reach level 1 from level 0 with the same time wasted as if you reach level 100 from 99
+FixedInterval: true
+
 # The interval in minutes after which a player's level is increased
 # 600 minutes = 10 hours
+# Only used if FixedInterval is set
 LevelInterval: 600
 
 levels:
     1: pex user %player% group add helper
     2: pex user %player% group add helper2
     3: pex user %player% group add helper3
+
+# Intervals between levels:
+# level: minutes
+# Where level is a level and minutes is a number of minutes
+# that a player has to spend on a server
+# To reach that level
+# Only used if FixedInterval is False
+intervals:
+    1: 300 # 5 hours
+    2: 600 # 10 hours
+    3: 900 # 15 hours
+    4: 1200 # 20 hours
