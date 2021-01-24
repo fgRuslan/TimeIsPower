@@ -1,0 +1,249 @@
+commit 689a609b2f47acaa4a4abfa866746d06d6ba136c
+Author: Ruslan Isaev <ubijca16@gmail.com>
+Date:   Sun Jan 24 13:33:42 2021 +0300
+
+    Convert to maven project
+
+diff --git a/.classpath b/.classpath
+index 2f7de04..0f32163 100644
+--- a/.classpath
++++ b/.classpath
+@@ -2,15 +2,25 @@
+ <classpath>
+ 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
+ 		<attributes>
+-			<attribute name="module" value="true"/>
++			<attribute name="maven.pomderived" value="true"/>
++		</attributes>
++	</classpathentry>
++	<classpathentry kind="src" output="target/classes" path="src">
++		<attributes>
++			<attribute name="optional" value="true"/>
++			<attribute name="maven.pomderived" value="true"/>
+ 		</attributes>
+ 	</classpathentry>
+-	<classpathentry kind="src" path="src"/>
+ 	<classpathentry kind="lib" path="C:/Users/Руслан/Downloads/spigot-1.16.3.jar">
+ 		<attributes>
+ 			<attribute name="javadoc_location" value="jar:file:/C:/Users/Руслан/Downloads/spigot-api-1.16.1-R0.1-20200811.074017-132-javadoc.jar!/"/>
+ 		</attributes>
+ 	</classpathentry>
+ 	<classpathentry kind="lib" path="C:/Users/Руслан/Downloads/EssentialsX-2.18.1.0.jar"/>
+-	<classpathentry kind="output" path="bin"/>
++	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
++		<attributes>
++			<attribute name="maven.pomderived" value="true"/>
++		</attributes>
++	</classpathentry>
++	<classpathentry kind="output" path="target/classes"/>
+ </classpath>
+diff --git a/.gitignore b/.gitignore
+index 5241a72..2c4b3ee 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -1 +1,84 @@
+-*.class
+\ No newline at end of file
++##############################
++## Java
++##############################
++.mtj.tmp/
++*.class
++*.jar
++*.war
++*.ear
++*.nar
++hs_err_pid*
++
++##############################
++## Maven
++##############################
++target/
++pom.xml.tag
++pom.xml.releaseBackup
++pom.xml.versionsBackup
++pom.xml.next
++pom.xml.bak
++release.properties
++dependency-reduced-pom.xml
++buildNumber.properties
++.mvn/timing.properties
++.mvn/wrapper/maven-wrapper.jar
++
++##############################
++## Gradle
++##############################
++bin/
++build/
++.gradle
++.gradletasknamecache
++gradle-app.setting
++!gradle-wrapper.jar
++
++##############################
++## IntelliJ
++##############################
++out/
++.idea/
++.idea_modules/
++*.iml
++*.ipr
++*.iws
++
++##############################
++## Eclipse
++##############################
++.settings/
++bin/
++tmp/
++.metadata
++.classpath
++.project
++*.tmp
++*.bak
++*.swp
++*~.nib
++local.properties
++.loadpath
++.factorypath
++
++##############################
++## NetBeans
++##############################
++nbproject/private/
++build/
++nbbuild/
++dist/
++nbdist/
++nbactions.xml
++nb-configuration.xml
++
++##############################
++## Visual Studio Code
++##############################
++.vscode/
++.code-workspace
++
++##############################
++## OS X
++##############################
++.DS_Store
+diff --git a/.project b/.project
+index da89d97..e27b750 100644
+--- a/.project
++++ b/.project
+@@ -10,8 +10,14 @@
+ 			<arguments>
+ 			</arguments>
+ 		</buildCommand>
++		<buildCommand>
++			<name>org.eclipse.m2e.core.maven2Builder</name>
++			<arguments>
++			</arguments>
++		</buildCommand>
+ 	</buildSpec>
+ 	<natures>
++		<nature>org.eclipse.m2e.core.maven2Nature</nature>
+ 		<nature>org.eclipse.jdt.core.javanature</nature>
+ 	</natures>
+ </projectDescription>
+diff --git a/.settings/org.eclipse.jdt.core.prefs b/.settings/org.eclipse.jdt.core.prefs
+index bb35fa0..e24b722 100644
+--- a/.settings/org.eclipse.jdt.core.prefs
++++ b/.settings/org.eclipse.jdt.core.prefs
+@@ -8,4 +8,6 @@ org.eclipse.jdt.core.compiler.debug.localVariable=generate
+ org.eclipse.jdt.core.compiler.debug.sourceFile=generate
+ org.eclipse.jdt.core.compiler.problem.assertIdentifier=error
+ org.eclipse.jdt.core.compiler.problem.enumIdentifier=error
++org.eclipse.jdt.core.compiler.problem.forbiddenReference=warning
++org.eclipse.jdt.core.compiler.release=disabled
+ org.eclipse.jdt.core.compiler.source=1.8
+diff --git a/pom.xml b/pom.xml
+new file mode 100644
+index 0000000..f3bd82e
+--- /dev/null
++++ b/pom.xml
+@@ -0,0 +1,70 @@
++<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
++  <modelVersion>4.0.0</modelVersion>
++  <groupId>TimeIsPower</groupId>
++  <artifactId>TimeIsPower</artifactId>
++  <version>0.0.1-SNAPSHOT</version>
++  <name>TimeIsPower</name>
++  
++  <repositories>
++    <!-- This adds the Spigot Maven repository to the build -->
++    <repository>
++        <id>spigot-repo</id>
++        <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
++    </repository>
++  
++    <repository>
++        <id>ess-repo</id>
++        <url>https://ci.ender.zone/plugin/repository/everything/</url>
++    </repository>
++    <repository>
++        <id>paper-repo</id>
++        <url>https://papermc.io/repo/repository/maven-public/</url>
++    </repository>
++  </repositories>
++  <dependencies>
++    <!--This adds the Spigot API artifact to the build -->
++    <dependency>
++           <groupId>org.spigotmc</groupId>
++           <artifactId>spigot-api</artifactId>
++           <version>1.16.5-R0.1-SNAPSHOT</version>
++           <scope>provided</scope>
++    </dependency>
++    <dependency>
++        <groupId>net.ess3</groupId>
++        <artifactId>EssentialsX</artifactId>
++        <version>2.17.2</version>
++        <scope>provided</scope>
++    </dependency>
++  </dependencies>
++  <build>
++	<sourceDirectory>.</sourceDirectory>
++	<plugins>
++		<plugin>
++			<artifactId>maven-assembly-plugin</artifactId>
++			<executions>
++				<execution>
++					<phase>package</phase>
++					<goals>
++						<goal>single</goal>
++					</goals>
++				</execution>
++			</executions>
++			<configuration>
++				<descriptorRefs>
++					<descriptorRef>jar-with-dependencies</descriptorRef>
++				</descriptorRefs>
++				<appendAssemblyId>false</appendAssemblyId>
++				<finalName>${project.artifactId}-${project.version}</finalName>
++			</configuration>
++		</plugin>
++		<plugin>
++			<artifactId>maven-compiler-plugin</artifactId>
++			<version>3.7.0</version>
++			<configuration>
++				<source>1.8</source>
++				<target>1.8</target>
++			</configuration>
++		</plugin>
++	</plugins>
++  </build>
++</project>
+\ No newline at end of file
+diff --git a/config.yml b/src/config.yml
+similarity index 100%
+rename from config.yml
+rename to src/config.yml
+diff --git a/messages.yml b/src/messages.yml
+similarity index 100%
+rename from messages.yml
+rename to src/messages.yml
+diff --git a/plugin.yml b/src/plugin.yml
+similarity index 100%
+rename from plugin.yml
+rename to src/plugin.yml
