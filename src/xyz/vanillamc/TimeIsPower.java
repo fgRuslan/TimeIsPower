@@ -70,6 +70,8 @@ public class TimeIsPower extends JavaPlugin {
 		Bukkit.getPluginManager().registerEvents(new EventListener(), this);
 		
 		getCommand("timeispower").setExecutor(new MainCommand(this));
+		getCommand("timeispower").setTabCompleter(new CustomTabCompleter());
+
 		getCommand("addlevel").setExecutor(new CreateNewLevel(this));
 		
 		messagesFile = new File(getDataFolder(), LANG_FILE_NAME);
