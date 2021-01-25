@@ -4,18 +4,15 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Statistic;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
-
-import com.earth2me.essentials.utils.EnumUtil;
 
 import xyz.vanillamc.util.Utils;
 
 public class TimeTask extends BukkitRunnable {
 
     private final TimeIsPower plugin;
-    
-    private static final Statistic PLAY_ONE_TICK = EnumUtil.getStatistic("PLAY_ONE_MINUTE", "PLAY_ONE_TICK");
+   
+    private static final Statistic PLAY_ONE_TICK = Statistic.PLAY_ONE_MINUTE;
 
     public TimeTask(TimeIsPower plugin) {
         this.plugin = plugin;

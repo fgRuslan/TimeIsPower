@@ -28,6 +28,8 @@ public class TimeIsPower extends JavaPlugin {
 	public static YamlConfiguration pluginConfig;
 	
 	private static long CHECK_INTERVAL = 20L;
+	
+	@SuppressWarnings("unused")
 	private BukkitTask checkTask;
 	
 	private void copy(InputStream in, File file) {
