@@ -16,6 +16,10 @@ levels:
     2: pex user %player% group add helper2
     3: pex user %player% group add helper3
 
+# The interval (in ticks) between checks of player statistic and, as a result, updating their permissions
+# Based on how much they played
+CheckInterval: 20
+
 # Intervals between levels:
 # level: minutes
 # Where level is a level and minutes is a number of minutes

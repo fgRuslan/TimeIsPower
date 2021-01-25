@@ -27,6 +27,9 @@ public class TimeIsPower extends JavaPlugin {
 	public static YamlConfiguration messageConfig;
 	public static YamlConfiguration pluginConfig;
 	
+	private static long CHECK_INTERVAL = 20L;
+	private BukkitTask checkTask;
+	
 	private void copy(InputStream in, File file) {
 	    try {
 	        OutputStream out = new FileOutputStream(file);
@@ -59,6 +62,7 @@ public class TimeIsPower extends JavaPlugin {
 	    }
 	}
 
+	@SuppressWarnings("static-access")
 	public void onEnable() {
 		getLogger().info("§aEnabled !");
 		Bukkit.getPluginManager().registerEvents(new EventListener(), this);
@@ -81,10 +85,9 @@ public class TimeIsPower extends JavaPlugin {
 		this.saveDefaultConfig();
 		loadYamls();
 		
+		CHECK_INTERVAL = this.pluginConfig.getLong("CheckInterval");
 		
-		
-		@SuppressWarnings("unused")
-		BukkitTask task = new TimeTask(this).runTaskTimer(this, 10, 20);
+		checkTask = new TimeTask(this).runTaskTimer(this, 0, CHECK_INTERVAL);
 	}
 	
 	private void firstRun() {
