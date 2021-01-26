@@ -5,3 +5,4 @@ commands:
 messages:
     overwrite: You have just overwritten a command for level %level%.
     add-new: You have just successfully added level number %level%!
+    levelup-player: Congratulations! You have just reached permission level %level%!

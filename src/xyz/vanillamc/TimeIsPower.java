@@ -16,12 +16,15 @@ public class TimeIsPower extends JavaPlugin {
 	
 	private static File messagesFile;
 	private static File configFile;
+	private static File playerDataFile;
 
 	private static final String LANG_FILE_NAME = "messages.yml";
 	private static final String CONFIG_FILE_NAME = "config.yml";
+	private static final String PLAYERDATA_FILE_NAME = "playerdata.yml";
 
 	public static YamlConfiguration messageConfig;
 	public static YamlConfiguration pluginConfig;
+	public static YamlConfiguration playerData;
 	
 	private static long CHECK_INTERVAL = 20L;
 	
@@ -33,6 +36,7 @@ public class TimeIsPower extends JavaPlugin {
 	    try {
 	        messageConfig.save(messagesFile);
 	        pluginConfig.save(configFile);
+	        playerData.save(playerDataFile);
 	    } catch (IOException e) {
 	        e.printStackTrace();
 	    }
@@ -42,6 +46,7 @@ public class TimeIsPower extends JavaPlugin {
 	    try {
 	        messageConfig.load(messagesFile);
 	        pluginConfig.load(configFile);
+	        playerData.load(playerDataFile);
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	    }
@@ -56,6 +61,10 @@ public class TimeIsPower extends JavaPlugin {
 		if(!configFile.exists()){
 			configFile.getParentFile().mkdirs();
 			Utils.copy(getResource(CONFIG_FILE_NAME), configFile);
+	    }
+		if(!playerDataFile.exists()){
+			playerDataFile.getParentFile().mkdirs();
+			Utils.copy(getResource(PLAYERDATA_FILE_NAME), playerDataFile);
 	    }
 		
 	}
@@ -72,6 +81,7 @@ public class TimeIsPower extends JavaPlugin {
 		
 		messagesFile = new File(getDataFolder(), LANG_FILE_NAME);
 		configFile = new File(getDataFolder(), CONFIG_FILE_NAME);
+		playerDataFile = new File(getDataFolder(), PLAYERDATA_FILE_NAME);
 		
 	    try {
 	        firstRun();
@@ -81,6 +91,7 @@ public class TimeIsPower extends JavaPlugin {
 		
 	    messageConfig = new YamlConfiguration();
 	    pluginConfig = new YamlConfiguration();
+	    playerData = new YamlConfiguration();
 	    
 		this.saveDefaultConfig();
 		loadYamls();

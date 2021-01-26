@@ -25,17 +25,25 @@ public class TimeTask extends BukkitRunnable {
 		return new TimeImplementation(hours, minutes, seconds);
     }
 
-    @Override
+    @SuppressWarnings("static-access")
+	@Override
     public void run() {
-    	@SuppressWarnings("static-access")
-		int oneLevelStage = plugin.pluginConfig.getInt("LevelInterval");
+    	int oneLevelStage = plugin.pluginConfig.getInt("LevelInterval");
 
     	for(Player p : Bukkit.getOnlinePlayers()) {
+    		int previousLevelCount = -1;
+    		previousLevelCount = plugin.playerData.getInt(String.format("", p.getName().toLowerCase()));
     		int minutes = (int) getPlayerTime(p).GetMinutes();
     		int levelCount = (int) Math.floor(minutes / oneLevelStage);
+    		if(levelCount > previousLevelCount) {
+    			plugin.playerData.set(p.getName().toLowerCase(), levelCount);
+    		}
+    		else continue;
+   
     		String command = Utils.GetLevelCommand(levelCount);
     		plugin.getServer().dispatchCommand(plugin.getServer().getConsoleSender(), command);
     		plugin.getLogger().info(ChatColor.GREEN + "Player " + p.getDisplayName() + " reached TimeIsPower level " + levelCount + "!");
+    		p.sendMessage(ChatColor.GREEN + plugin.messageConfig.getString("messages.levelup-player").replace("%level%", String.valueOf(levelCount)));
     	}
     }
 
