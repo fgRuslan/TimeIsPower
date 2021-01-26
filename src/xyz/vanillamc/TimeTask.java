@@ -19,8 +19,6 @@ public class TimeTask extends BukkitRunnable {
     }
     
     private TimeImplementation getPlayerTime(Player p) {
-    	//long now = System.currentTimeMillis() / 1000L;
-		
 		long seconds = (p.getStatistic(PLAY_ONE_TICK) * 50);
 		long minutes = seconds / 60;
 		long hours = minutes / 60;

@@ -28,13 +28,11 @@ public class CreateNewLevel implements CommandExecutor {
 
 		if (plugin.pluginConfig.getString("levels." + level) == null) {
 			Utils.SetLevelCommand(level, levelcommand);
-			//plugin.pluginConfig.set("levels." + level, levelcommand);
 			sender.sendMessage(ChatColor.GREEN + plugin.messageConfig.getString("messages.add-new").replace("%level%", levelnumber));
 			plugin.saveYamls();
 		}
 		else {
 			Utils.SetLevelCommand(level, levelcommand);
-			//plugin.pluginConfig.set("levels." + level, levelcommand);
 			sender.sendMessage(ChatColor.DARK_RED + plugin.messageConfig.getString("messages.overwrite").replace("%level%", levelnumber));
 			plugin.saveYamls();
 		}

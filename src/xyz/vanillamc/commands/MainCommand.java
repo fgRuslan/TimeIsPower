@@ -1,26 +1,20 @@
 package xyz.vanillamc.commands;
 
-import java.util.List;
-
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
-import com.google.common.collect.Lists;
-
 import xyz.vanillamc.TimeIsPower;
 
 public class MainCommand implements CommandExecutor {
 
-	@SuppressWarnings("unused")
 	private TimeIsPower plugin;
 
 	public MainCommand(TimeIsPower plugin) {
 		this.plugin = plugin;
 	}
 
-	@SuppressWarnings("static-access")
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		if (args.length < 1) {

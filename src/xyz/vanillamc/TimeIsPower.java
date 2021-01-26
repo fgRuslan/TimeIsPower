@@ -1,20 +1,16 @@
 package xyz.vanillamc;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
 
 import xyz.vanillamc.commands.CreateNewLevel;
 import xyz.vanillamc.commands.MainCommand;
+import xyz.vanillamc.util.Utils;
 
 public class TimeIsPower extends JavaPlugin {
 	
@@ -31,21 +27,7 @@ public class TimeIsPower extends JavaPlugin {
 	
 	@SuppressWarnings("unused")
 	private BukkitTask checkTask;
-	
-	private void copy(InputStream in, File file) {
-	    try {
-	        OutputStream out = new FileOutputStream(file);
-	        byte[] buf = new byte[1024];
-	        int len;
-	        while((len=in.read(buf))>0){
-	            out.write(buf,0,len);
-	        }
-	        out.close();
-	        in.close();
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	    }
-	}
+
 	
 	public void saveYamls() {
 	    try {
@@ -55,6 +37,7 @@ public class TimeIsPower extends JavaPlugin {
 	        e.printStackTrace();
 	    }
 	}
+
 	public void loadYamls() {
 	    try {
 	        messageConfig.load(messagesFile);
@@ -62,6 +45,19 @@ public class TimeIsPower extends JavaPlugin {
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	    }
+	}
+
+	private void firstRun() {
+		if(!messagesFile.exists()){
+			messagesFile.getParentFile().mkdirs();
+	        Utils.copy(getResource(LANG_FILE_NAME), messagesFile);
+	    }
+		
+		if(!configFile.exists()){
+			configFile.getParentFile().mkdirs();
+			Utils.copy(getResource(CONFIG_FILE_NAME), configFile);
+	    }
+		
 	}
 
 	@SuppressWarnings("static-access")
@@ -92,24 +88,6 @@ public class TimeIsPower extends JavaPlugin {
 		CHECK_INTERVAL = this.pluginConfig.getLong("CheckInterval");
 		
 		checkTask = new TimeTask(this).runTaskTimer(this, 0, CHECK_INTERVAL);
-	}
-	
-	private void firstRun() {
-		if(!messagesFile.exists()){
-			messagesFile.getParentFile().mkdirs();
-	        copy(getResource(LANG_FILE_NAME), messagesFile);
-	    }
-		
-		if(!configFile.exists()){
-			configFile.getParentFile().mkdirs();
-	        copy(getResource(CONFIG_FILE_NAME), configFile);
-	    }
-		
-	}
-
-	@EventHandler
-	public void handler(InventoryClickEvent e) {
-		
 	}
 	
 	public void onDisable() {
