@@ -10,6 +10,9 @@ import org.bukkit.scheduler.BukkitTask;
 
 import xyz.vanillamc.commands.CreateNewLevel;
 import xyz.vanillamc.commands.MainCommand;
+import xyz.vanillamc.commands.RPTime;
+import xyz.vanillamc.commands.tab.CustomTabCompleter;
+import xyz.vanillamc.commands.tab.RPTimeTabCompleter;
 import xyz.vanillamc.util.Utils;
 
 public class TimeIsPower extends JavaPlugin {
@@ -78,6 +81,9 @@ public class TimeIsPower extends JavaPlugin {
 		getCommand("timeispower").setTabCompleter(new CustomTabCompleter());
 
 		getCommand("addlevel").setExecutor(new CreateNewLevel(this));
+		
+		getCommand("rptime").setExecutor(new RPTime(this));
+		getCommand("rptime").setTabCompleter(new RPTimeTabCompleter());
 		
 		messagesFile = new File(getDataFolder(), LANG_FILE_NAME);
 		configFile = new File(getDataFolder(), CONFIG_FILE_NAME);

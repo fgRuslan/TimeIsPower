@@ -1,4 +1,4 @@
-package xyz.vanillamc;
+package xyz.vanillamc.commands.tab;
 
 import java.util.List;
 

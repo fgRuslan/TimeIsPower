@@ -12,3 +12,5 @@ commands:
       aliases: [tip, ti]
    addlevel:
       usage: /addlevel
+   rptime:
+      usage: /rptime
