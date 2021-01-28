@@ -24,7 +24,7 @@ public class RPTime implements CommandExecutor {
 		}
 		String function = args[0].toLowerCase();
 		String player = args[1].toLowerCase();
-		String value = args[2];
+		String value = args.length > 2 ? args[2] : "";
 
 		switch (function) {
 		case "set":
