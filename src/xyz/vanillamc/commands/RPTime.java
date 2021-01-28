@@ -33,6 +33,7 @@ public class RPTime implements CommandExecutor {
 				return true;
 			}
 			plugin.playerData.set(player, Integer.parseInt(value));
+			plugin.savePlayerData();
 			sender.sendMessage(ChatColor.GREEN + "Successfully set " + player + "'s RPTime to " + value);
 			break;
 		case "get":

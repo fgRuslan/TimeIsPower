@@ -37,6 +37,7 @@ public class TimeTask extends BukkitRunnable {
     		int levelCount = (int) Math.floor(minutes / oneLevelStage);
     		if(levelCount > previousLevelCount) {
     			plugin.playerData.set(p.getName().toLowerCase(), levelCount);
+    			plugin.savePlayerData();
     		}
     		else continue;
    

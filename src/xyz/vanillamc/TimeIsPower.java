@@ -1,9 +1,11 @@
 package xyz.vanillamc;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import org.bukkit.Bukkit;
+import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
@@ -34,6 +36,29 @@ public class TimeIsPower extends JavaPlugin {
 	@SuppressWarnings("unused")
 	private BukkitTask checkTask;
 
+	
+	public static void savePlayerData() {
+		try {
+			playerData.save(playerDataFile);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public static void loadPlayerData() {
+		try {
+			playerData.load(playerDataFile);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvalidConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 	public void saveYamls() {
 	    try {
