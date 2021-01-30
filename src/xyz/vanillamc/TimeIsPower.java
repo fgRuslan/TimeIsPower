@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -100,6 +101,13 @@ public class TimeIsPower extends JavaPlugin {
 	@SuppressWarnings("static-access")
 	public void onEnable() {
 		getLogger().info("§aEnabled !");
+
+
+		int pluginId = 10179;
+		Metrics metrics = new Metrics(this, pluginId);
+        getLogger().info(metrics.isEnabled() ? ChatColor.GREEN + "Metrics is enabled!" : ChatColor.DARK_RED + "Metrics is disabled");
+
+		
 		Bukkit.getPluginManager().registerEvents(new EventListener(), this);
 		
 		getCommand("timeispower").setExecutor(new MainCommand(this));
