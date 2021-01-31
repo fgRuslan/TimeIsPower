@@ -18,11 +18,13 @@ public class CreateNewLevel implements CommandExecutor {
 	@SuppressWarnings("static-access")
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-		for(int i = 0; i < args.length; i++) {
-			plugin.getLogger().info(args[i]);
+		String cmd = "";
+		for(int i = 1; i < args.length; i++) {
+			cmd = cmd + args[i] + " ";
 		}
+		System.out.println(cmd);
 		String levelnumber = args[0];
-		String levelcommand = args[1];
+		String levelcommand = cmd;
 
 		int level = Integer.parseInt(levelnumber);
 
