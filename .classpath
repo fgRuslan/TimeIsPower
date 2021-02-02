@@ -6,7 +6,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/Users/Руслан/Downloads/spigot-1.16.3.jar">
+	<classpathentry kind="lib" path="C:/Users/Руслан/Downloads/spigot-1.16.5.jar">
 		<attributes>
 			<attribute name="javadoc_location" value="jar:file:/C:/Users/Руслан/Downloads/spigot-api-1.16.1-R0.1-20200811.074017-132-javadoc.jar!/"/>
 		</attributes>
