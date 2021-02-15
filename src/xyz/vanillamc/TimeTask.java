@@ -19,7 +19,7 @@ public class TimeTask extends BukkitRunnable {
     }
     
     private TimeImplementation getPlayerTime(Player p) {
-		long seconds = (p.getStatistic(PLAY_ONE_TICK) * 50);
+		long seconds = (p.getStatistic(PLAY_ONE_TICK) / 20);
 		return new TimeImplementation(seconds);
     }
 
